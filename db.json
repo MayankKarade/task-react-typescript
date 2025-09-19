@@ -1,0 +1,26 @@
+{
+  "students": [
+    {
+      "id": "e00c",
+      "fullName": "Mayank Karade",
+      "email": "karade@gmail.com",
+      "phoneNumber": "7555999222",
+      "dateOfBirth": "2001-03-20",
+      "gender": "Male",
+      "address": "Bhopal, Madhya Pradesh",
+      "courseEnrolled": "Computer Science",
+      "password": "U2FsdGVkX18dDcs+4I+b6ciZE0/yRhL52o7k0WKZcJk="
+    },
+    {
+      "id": "9fc1",
+      "fullName": "Vivek Kumar",
+      "email": "vivek@gmail.com",
+      "phoneNumber": "9998882222",
+      "dateOfBirth": "2004-06-24",
+      "gender": "Male",
+      "address": "Indore, Madhya Pradesh",
+      "courseEnrolled": "HTML",
+      "password": "U2FsdGVkX1/PmMwHIx+O7d9NlnFpc5JH5aX1cBYksT8="
+    }
+  ]
+}
