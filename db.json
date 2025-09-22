@@ -32,6 +32,17 @@
       "address": "U2FsdGVkX1+aDFyCRjCs9xGcmJxBoolFxKCUWAKvDzFJWWlINZj+xk9mSJaN2z0E",
       "courseEnrolled": "U2FsdGVkX18PYhQq38BBreiLI6fPm0BZvyQQa3fVqgc=",
       "password": "U2FsdGVkX18IR/sHk02s/2XUcs3GtO97Hf1lbCKE5QQ="
+    },
+    {
+      "id": "ecdf",
+      "fullName": "U2FsdGVkX188L9V2W+PmEnEiGhxml59+M6tZKAAiedGpAgvVGfkXQ06lrCGCPp4F",
+      "email": "nitin@gmail.com",
+      "phoneNumber": "U2FsdGVkX1/ALATXm6Wd7ffReluOwnmWdaSgR+eI+6A=",
+      "dateOfBirth": "U2FsdGVkX19rBQf9rLQFxx/RqJGhEHLhgqKf1F8Ug9A=",
+      "gender": "U2FsdGVkX1+Z+Zciore6gvmoW9P8U34ktYhBYaUjeMI=",
+      "address": "U2FsdGVkX1/JGEVepJHkvkp1nbGBZ2zd1xMX1tg1uFUoSnCz75RRz+Na36BPLMx5",
+      "courseEnrolled": "U2FsdGVkX1+lArg9JHgqLoYSDNHULFzZVifIKjicmx8=",
+      "password": "U2FsdGVkX18MJ1x3mvHxHSKU8CHtnF7x5KXwqcQE8Gg="
     }
   ]
 }
