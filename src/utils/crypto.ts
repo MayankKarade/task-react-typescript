@@ -1,6 +1,6 @@
 import CryptoJS from "crypto-js";
 
-const SECRET_KEY = "student-management-secret-key-2024";
+const SECRET_KEY = "student-management";
 
 export const encryptData = (data: string): string => {
   try {
