@@ -1,26 +1,37 @@
 {
   "students": [
     {
-      "id": "e00c",
-      "fullName": "Mayank Karade",
+      "fullName": "U2FsdGVkX1/DY74Xn7JRukrX445biQZ45YZBzFb4fEM=",
       "email": "karade@gmail.com",
-      "phoneNumber": "7555999222",
-      "dateOfBirth": "2001-03-20",
-      "gender": "Male",
-      "address": "Bhopal, Madhya Pradesh",
-      "courseEnrolled": "Computer Science",
-      "password": "U2FsdGVkX18dDcs+4I+b6ciZE0/yRhL52o7k0WKZcJk="
+      "phoneNumber": "U2FsdGVkX1+e77GAKourm5G2Kx9maUp1F8QVIg1CTco=",
+      "dateOfBirth": "U2FsdGVkX1/zSfOFvoWzzOkqPBshq7Syzt+M7fC6k8o=",
+      "gender": "U2FsdGVkX1/BYjWuTupMmA+kQH15YZRBG4jl3yQocW8=",
+      "address": "U2FsdGVkX1/YP5OO9pGu0tmvGbwMgP5DUxf4jOokGKcqQEOUjjWiMbsyyo4gXy57",
+      "courseEnrolled": "U2FsdGVkX1+j3LpsVlofc2fWXInHhBiq/6wOT3NfF4A=",
+      "password": "U2FsdGVkX18AlTOVEOL7MLCT144ItzDuPgfziBSTlFg=",
+      "id": "8313"
     },
     {
-      "id": "9fc1",
-      "fullName": "Vivek Kumar",
-      "email": "vivek@gmail.com",
-      "phoneNumber": "9998882222",
-      "dateOfBirth": "2004-06-24",
-      "gender": "Male",
-      "address": "Indore, Madhya Pradesh",
-      "courseEnrolled": "HTML",
-      "password": "U2FsdGVkX1/PmMwHIx+O7d9NlnFpc5JH5aX1cBYksT8="
+      "id": "8e9e",
+      "fullName": "U2FsdGVkX19Y2d1aWcY2eDIdlDl71VrYELgI0NuBS3nRN/2UjaPRgssF92rtCFtR",
+      "email": "shanti@gmail.com",
+      "phoneNumber": "U2FsdGVkX180k0wdGC5zJBo+TVRfcyW0XjXB5hFjlW8=",
+      "dateOfBirth": "U2FsdGVkX193UiNVm13PjE/NUnWFQbTn5CY2jouRQAg=",
+      "gender": "U2FsdGVkX1+iBlB8Y7URBtJj2cYZANW5uhvGwwB6s94=",
+      "address": "U2FsdGVkX18Uw92RYfkG03Z8u90tmGTjj70z5AdEaA8L8rWyWgBkx96qr9coG2gE",
+      "courseEnrolled": "U2FsdGVkX1/ufnkDJuxMpM3C3/dT0rYfBi3vPa44A9c=",
+      "password": "U2FsdGVkX18kXO/DyUGwNt/eQN7bF/XI24IPclFdRTI="
+    },
+    {
+      "id": "f6e4",
+      "fullName": "U2FsdGVkX1+Pe7HanzoSLiOjKjI1i4b+nBitLAaMmYs=",
+      "email": "sachin@gmail.com",
+      "phoneNumber": "U2FsdGVkX1/L4PWHE+WZwQAM4wvWlVQtV39DiRrw0tM=",
+      "dateOfBirth": "U2FsdGVkX18zxh+v6acJ3f2BZosRXlMedS9XhxpRJqY=",
+      "gender": "U2FsdGVkX18cFcczhVfwjo/lJBmza3ezKPOQbMojkkY=",
+      "address": "U2FsdGVkX1+aDFyCRjCs9xGcmJxBoolFxKCUWAKvDzFJWWlINZj+xk9mSJaN2z0E",
+      "courseEnrolled": "U2FsdGVkX18PYhQq38BBreiLI6fPm0BZvyQQa3fVqgc=",
+      "password": "U2FsdGVkX18IR/sHk02s/2XUcs3GtO97Hf1lbCKE5QQ="
     }
   ]
 }

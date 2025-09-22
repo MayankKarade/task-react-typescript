@@ -7,7 +7,19 @@ export interface Student {
   gender: string;
   address: string;
   courseEnrolled: string;
-  password: string; // This will be stored encrypted
+  password: string;
+}
+
+export interface EncryptedStudent {
+  id?: number;
+  fullName: string;
+  email: string; // Encrypted
+  phoneNumber: string; // Encrypted
+  dateOfBirth: string;
+  gender: string;
+  address: string; // Encrypted
+  courseEnrolled: string;
+  password: string; // Encrypted
 }
 
 export interface UserCredentials {

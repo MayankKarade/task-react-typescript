@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Student } from "../types";
-import { encryptData } from "../utils/crypto";
+import { decryptStudentData } from "../utils/crypto";
 
 interface StudentFormProps {
   student?: Student | null;
   onSubmit: (student: Student) => void;
   onCancel: () => void;
+  isAdmin?: boolean;
 }
 
 const StudentForm: React.FC<StudentFormProps> = ({
   student,
   onSubmit,
   onCancel,
+  isAdmin = false,
 }) => {
   const [formData, setFormData] = useState<Omit<Student, "id">>({
     fullName: "",
@@ -21,13 +23,41 @@ const StudentForm: React.FC<StudentFormProps> = ({
     gender: "",
     address: "",
     courseEnrolled: "",
-    password: "",
+    password: "", // Note: For editing, we might want to handle password differently
   });
+
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (student) {
-      const { id, ...studentData } = student;
-      setFormData(studentData);
+      console.log("📝 Editing existing student:", student);
+      setIsEditing(true);
+
+      // Decrypt the student data for editing
+      try {
+        const decryptedStudent = decryptStudentData(student);
+        const { id, ...studentData } = decryptedStudent;
+        setFormData(studentData);
+        console.log("🔓 Decrypted student data for form:", studentData);
+      } catch (error) {
+        console.error("Error decrypting student data:", error);
+        // If decryption fails, try using the student data as-is
+        const { id, ...studentData } = student;
+        setFormData(studentData);
+      }
+    } else {
+      setIsEditing(false);
+      // Reset form for new student
+      setFormData({
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        dateOfBirth: "",
+        gender: "",
+        address: "",
+        courseEnrolled: "",
+        password: "",
+      });
     }
   }, [student]);
 
@@ -43,24 +73,44 @@ const StudentForm: React.FC<StudentFormProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Encrypt password before submitting
+    // Validate required fields
+    if (
+      !formData.fullName ||
+      !formData.email ||
+      (!isEditing && !formData.password)
+    ) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    // For editing, if password is empty, keep the existing one
     const studentToSubmit: Student = {
       ...formData,
-      password: encryptData(formData.password),
+      // If editing and password field is empty, don't include it (will keep existing)
+      ...(isEditing && !formData.password
+        ? { password: student?.password || "" }
+        : {}),
     };
 
+    // If we have an original student, include the ID
     if (student && student.id) {
       studentToSubmit.id = student.id;
     }
 
+    console.log("📤 Submitting student data:", studentToSubmit);
     onSubmit(studentToSubmit);
   };
 
   return (
     <div className="bg-white shadow rounded-lg p-6">
       <h2 className="text-lg font-medium text-gray-900 mb-4">
-        {student ? "Edit Student" : "Add New Student"}
+        {isEditing
+          ? "Edit Student"
+          : isAdmin
+          ? "Add New Student"
+          : "Student Registration"}
       </h2>
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
@@ -68,7 +118,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
               htmlFor="fullName"
               className="block text-sm font-medium text-gray-700"
             >
-              Full Name
+              Full Name *
             </label>
             <input
               type="text"
@@ -80,12 +130,13 @@ const StudentForm: React.FC<StudentFormProps> = ({
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
+
           <div>
             <label
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Email
+              Email *
             </label>
             <input
               type="email"
@@ -97,15 +148,13 @@ const StudentForm: React.FC<StudentFormProps> = ({
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label
               htmlFor="phoneNumber"
               className="block text-sm font-medium text-gray-700"
             >
-              Phone Number
+              Phone Number *
             </label>
             <input
               type="tel"
@@ -117,12 +166,13 @@ const StudentForm: React.FC<StudentFormProps> = ({
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
+
           <div>
             <label
               htmlFor="dateOfBirth"
               className="block text-sm font-medium text-gray-700"
             >
-              Date of Birth
+              Date of Birth *
             </label>
             <input
               type="date"
@@ -134,15 +184,13 @@ const StudentForm: React.FC<StudentFormProps> = ({
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label
               htmlFor="gender"
               className="block text-sm font-medium text-gray-700"
             >
-              Gender
+              Gender *
             </label>
             <select
               id="gender"
@@ -158,12 +206,13 @@ const StudentForm: React.FC<StudentFormProps> = ({
               <option value="Other">Other</option>
             </select>
           </div>
+
           <div>
             <label
               htmlFor="courseEnrolled"
               className="block text-sm font-medium text-gray-700"
             >
-              Course Enrolled
+              Course Enrolled *
             </label>
             <input
               type="text"
@@ -182,7 +231,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
             htmlFor="address"
             className="block text-sm font-medium text-gray-700"
           >
-            Address
+            Address *
           </label>
           <textarea
             id="address"
@@ -200,7 +249,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
             htmlFor="password"
             className="block text-sm font-medium text-gray-700"
           >
-            Password
+            Password {isEditing ? "(leave blank to keep current)" : "*"}
           </label>
           <input
             type="password"
@@ -208,7 +257,10 @@ const StudentForm: React.FC<StudentFormProps> = ({
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required
+            placeholder={
+              isEditing ? "Enter new password or leave blank" : "Enter password"
+            }
+            required={!isEditing}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </div>
@@ -225,7 +277,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
             type="submit"
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            {student ? "Update" : "Add"} Student
+            {isEditing ? "Update Student" : "Add Student"}
           </button>
         </div>
       </form>
